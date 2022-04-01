@@ -1,0 +1,255 @@
+<html>
+	<head>
+	<meta charset="utf-8">
+    	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Bafang Rechner</title>
+    	<meta name="description" content="Bafang Rechner">
+	<link rel="stylesheet" href="/app/assets/bootstrap.min.css">
+    	<script src="/app/assets/jquery.3.6.1.js"></script>
+    	<script src="/app/assets/bootstrap.js"></script>
+	<script src="/app/assets/savestorage.min.js"></script>	
+	<style>input, .text-success{font-weight: bold;}</style>
+	</head>
+<body onload="calculate()">
+		
+<div class="container">
+	<div class="row">
+		<h1>Bafang Rechner</h1>
+
+		<form id="bafang">
+			<div class="row">
+				<div class="col-xs-12 col-md-12">
+					<div class="panel panel-default">
+					  <div class="panel-heading">Grundeinstellung</div>
+					  <div class="panel-body">
+					  	<div class="col-xs-12 col-md-4">
+			          		<div class="form-group">
+			          			<label class="control-label">Akku Nennleistung</label>
+			          			<select class="form-control input-sm" name="voltage" id="voltage">
+					                <option value="12">12 volt</option>
+					                <option value="24">24 volt</option>
+					                <option value="36" selected>36 volt</option>
+					                <option value="48">48 volt</option>
+					                <option value="60">60 volt</option>
+					                <option value="72">72 volt</option>            
+					            </select>
+			        		</div>
+	        			</div>
+					  
+					 	<div class="col-xs-12 col-md-4">
+			          		<div class="form-group">
+			          			<label class="control-label">max. Ampere Controller</label>
+			          			<input class="form-control input-sm" placeholder="max. Ampere" name="ampere" id="ampere" type="number" value="18">
+			        		</div>
+			        	</div>
+
+			        	<div class="col-xs-12 col-md-4">
+			          		<div class="form-group">
+			          			<label class="control-label">max. Geschwindigkeit in km/h</label>
+			          			<input class="form-control input-sm" placeholder="max. Geschwindigkeit in km/h" name="speed" id="speed" type="number" value="25">
+			        		</div>
+			        	</div>
+
+					  </div>
+					</div>
+				</div>
+        	</div>
+
+
+
+
+
+        	<table class="table table-striped table-hover ">
+			  <thead>
+			    <tr>
+			      <th>Assist Level</th>
+			      <th>max. Current %</th>
+			      <th>max. Current A</th>
+			      <th>Wattleistung &Oslash;</th>
+			      <th>max. Speed %</th>
+			      <th>max. Speed km/h</th>
+			    </tr>
+			  </thead>
+			  <tbody>
+
+			  					    <tr>
+				      <td><h4>Level 0</h4></td>
+				      <td>
+				      	<input class="form-control input-sm" placeholder="max. Ampere" name="pas_0_current" id="pas_0_current" type="number" value="0">
+				      </td>
+				      <td><h4 id="result_pas_0_current" class="pull-right text-success"></h4></td>
+				      <td><h4 id="result_pas_0_watt" class="pull-right text-success"></h4></td>
+				      <td>
+				      	<input class="form-control input-sm" placeholder="max. Geschwindigkeit in km/h" name="pas_0_speed" id="pas_0_speed" type="number" value="100">
+				      </td>
+				      <td><h4 id="result_pas_0_speed" class="pull-right text-success"></h4></td>
+				    </tr>
+								    <tr>
+				      <td><h4>Level 1</h4></td>
+				      <td>
+				      	<input class="form-control input-sm" placeholder="max. Ampere" name="pas_1_current" id="pas_1_current" type="number" value="10">
+				      </td>
+				      <td><h4 id="result_pas_1_current" class="pull-right text-success"></h4></td>
+				      <td><h4 id="result_pas_1_watt" class="pull-right text-success"></h4></td>
+				      <td>
+				      	<input class="form-control input-sm" placeholder="max. Geschwindigkeit in km/h" name="pas_1_speed" id="pas_1_speed" type="number" value="100">
+				      </td>
+				      <td><h4 id="result_pas_1_speed" class="pull-right text-success"></h4></td>
+				    </tr>
+								    <tr>
+				      <td><h4>Level 2</h4></td>
+				      <td>
+				      	<input class="form-control input-sm" placeholder="max. Ampere" name="pas_2_current" id="pas_2_current" type="number" value="20">
+				      </td>
+				      <td><h4 id="result_pas_2_current" class="pull-right text-success"></h4></td>
+				      <td><h4 id="result_pas_2_watt" class="pull-right text-success"></h4></td>
+				      <td>
+				      	<input class="form-control input-sm" placeholder="max. Geschwindigkeit in km/h" name="pas_2_speed" id="pas_2_speed" type="number" value="100">
+				      </td>
+				      <td><h4 id="result_pas_2_speed" class="pull-right text-success"></h4></td>
+				    </tr>
+								    <tr>
+				      <td><h4>Level 3</h4></td>
+				      <td>
+				      	<input class="form-control input-sm" placeholder="max. Ampere" name="pas_3_current" id="pas_3_current" type="number" value="30">
+				      </td>
+				      <td><h4 id="result_pas_3_current" class="pull-right text-success"></h4></td>
+				      <td><h4 id="result_pas_3_watt" class="pull-right text-success"></h4></td>
+				      <td>
+				      	<input class="form-control input-sm" placeholder="max. Geschwindigkeit in km/h" name="pas_3_speed" id="pas_3_speed" type="number" value="100">
+				      </td>
+				      <td><h4 id="result_pas_3_speed" class="pull-right text-success"></h4></td>
+				    </tr>
+								    <tr>
+				      <td><h4>Level 4</h4></td>
+				      <td>
+				      	<input class="form-control input-sm" placeholder="max. Ampere" name="pas_4_current" id="pas_4_current" type="number" value="40">
+				      </td>
+				      <td><h4 id="result_pas_4_current" class="pull-right text-success"></h4></td>
+				      <td><h4 id="result_pas_4_watt" class="pull-right text-success"></h4></td>
+				      <td>
+				      	<input class="form-control input-sm" placeholder="max. Geschwindigkeit in km/h" name="pas_4_speed" id="pas_4_speed" type="number" value="100">
+				      </td>
+				      <td><h4 id="result_pas_4_speed" class="pull-right text-success"></h4></td>
+				    </tr>
+								    <tr>
+				      <td><h4>Level 5</h4></td>
+				      <td>
+				      	<input class="form-control input-sm" placeholder="max. Ampere" name="pas_5_current" id="pas_5_current" type="number" value="50">
+				      </td>
+				      <td><h4 id="result_pas_5_current" class="pull-right text-success"></h4></td>
+				      <td><h4 id="result_pas_5_watt" class="pull-right text-success"></h4></td>
+				      <td>
+				      	<input class="form-control input-sm" placeholder="max. Geschwindigkeit in km/h" name="pas_5_speed" id="pas_5_speed" type="number" value="100">
+				      </td>
+				      <td><h4 id="result_pas_5_speed" class="pull-right text-success"></h4></td>
+				    </tr>
+								    <tr>
+				      <td><h4>Level 6</h4></td>
+				      <td>
+				      	<input class="form-control input-sm" placeholder="max. Ampere" name="pas_6_current" id="pas_6_current" type="number" value="60">
+				      </td>
+				      <td><h4 id="result_pas_6_current" class="pull-right text-success"></h4></td>
+				      <td><h4 id="result_pas_6_watt" class="pull-right text-success"></h4></td>
+				      <td>
+				      	<input class="form-control input-sm" placeholder="max. Geschwindigkeit in km/h" name="pas_6_speed" id="pas_6_speed" type="number" value="100">
+				      </td>
+				      <td><h4 id="result_pas_6_speed" class="pull-right text-success"></h4></td>
+				    </tr>
+								    <tr>
+				      <td><h4>Level 7</h4></td>
+				      <td>
+				      	<input class="form-control input-sm" placeholder="max. Ampere" name="pas_7_current" id="pas_7_current" type="number" value="70">
+				      </td>
+				      <td><h4 id="result_pas_7_current" class="pull-right text-success"></h4></td>
+				      <td><h4 id="result_pas_7_watt" class="pull-right text-success"></h4></td>
+				      <td>
+				      	<input class="form-control input-sm" placeholder="max. Geschwindigkeit in km/h" name="pas_7_speed" id="pas_7_speed" type="number" value="100">
+				      </td>
+				      <td><h4 id="result_pas_7_speed" class="pull-right text-success"></h4></td>
+				    </tr>
+								    <tr>
+				      <td><h4>Level 8</h4></td>
+				      <td>
+				      	<input class="form-control input-sm" placeholder="max. Ampere" name="pas_8_current" id="pas_8_current" type="number" value="80">
+				      </td>
+				      <td><h4 id="result_pas_8_current" class="pull-right text-success"></h4></td>
+				      <td><h4 id="result_pas_8_watt" class="pull-right text-success"></h4></td>
+				      <td>
+				      	<input class="form-control input-sm" placeholder="max. Geschwindigkeit in km/h" name="pas_8_speed" id="pas_8_speed" type="number" value="100">
+				      </td>
+				      <td><h4 id="result_pas_8_speed" class="pull-right text-success"></h4></td>
+				    </tr>
+								    <tr>
+				      <td><h4>Level 9</h4></td>
+				      <td>
+				      	<input class="form-control input-sm" placeholder="max. Ampere" name="pas_9_current" id="pas_9_current" type="number" value="90">
+				      </td>
+				      <td><h4 id="result_pas_9_current" class="pull-right text-success"></h4></td>
+				      <td><h4 id="result_pas_9_watt" class="pull-right text-success"></h4></td>
+				      <td>
+				      	<input class="form-control input-sm" placeholder="max. Geschwindigkeit in km/h" name="pas_9_speed" id="pas_9_speed" type="number" value="100">
+				      </td>
+				      <td><h4 id="result_pas_9_speed" class="pull-right text-success"></h4></td>
+				    </tr>
+							    </tbody>
+			    
+			</table>
+
+		</form>
+		<hr>
+	</div>
+	<small><a href="https://github.com/httpneo/httpneo.github.io">https://github.com/httpneo/httpneo.github.io</a></small>
+</div>			
+
+
+
+<script>
+    saveStorage('#bafang');
+</script>
+<script>
+	function calculate()
+	{
+		
+		let voltage = parseFloat($("#voltage").children('option:selected').val());
+		let ampere = parseFloat($("#ampere").val());
+		let speed = parseFloat($("#speed").val());
+
+		for (var i = 0; i < 10; i++)
+		{
+			let max_current = parseFloat($("#pas_"+i+"_current").val());
+			let max_speed = parseFloat($("#pas_"+i+"_speed").val());
+
+			let current = parseFloat(((ampere/100)*max_current).toFixed(2));
+			let watt = parseFloat((current * voltage).toFixed(2));
+			let speed2 = parseFloat(((speed/100)*max_speed).toFixed(2));
+
+			$("#result_pas_"+i+"_current").text(current+'A');
+			$("#result_pas_"+i+"_watt").text(watt+'w');
+			$("#result_pas_"+i+"_speed").text(speed2+' km/h');
+
+		}
+	}
+
+	$(".form-control").keyup(function() {
+		calculate();
+	})
+
+	$("#voltage").change(function() {
+		calculate();
+	})
+
+	$('input.form-control').keypress(function(e) {
+	    if(!(e.keyCode >= 48 && e.keyCode <= 57 || e.keyCode == 44)) {
+	        e.preventDefault();
+	    }
+	})
+
+</script>
+</body>
+</html>
+
+
+
+
